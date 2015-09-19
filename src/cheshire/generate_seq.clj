@@ -88,7 +88,9 @@
        (write-end-array ~jg wholeness#))))
 
 (defn generate [^JsonGenerator jg obj opts]
-  (let [wholeness (or (:wholeness opts) :all)]
+  (let [opts (if (:wholeness opts)
+               opts
+               (assoc opts :wholeness :all))]
     (cond
       (nil? obj) (.writeNull ^JsonGenerator jg)
       (get (:impls JSONable) (class obj)) (#'to-json obj jg)
