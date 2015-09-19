@@ -74,7 +74,7 @@
    Returns a given writer."
   `(let [c-wr# ~writer]
      (binding [*generator* (create-generator c-wr#)
-               *opt-map* (merge default-opts ~opt-map)]
+               *opt-map* ~opt-map]
        ~@body
        (.flush *generator*)
        c-wr#)))
