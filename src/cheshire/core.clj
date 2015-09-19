@@ -89,7 +89,8 @@
   - :end - write object with end border only."
   ([obj] (write obj nil))
   ([obj wholeness]
-   (gen-seq/generate *generator* obj (assoc *opt-map* :wholeness wholeness))))
+   (gen-seq/generate *generator* obj (assoc (merge default-opts *opt-map*)
+                                            :wholeness wholeness))))
 
 (defn generate-smile
   "Returns a SMILE-encoded byte-array for the given Clojure object.
